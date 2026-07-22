@@ -54,16 +54,106 @@ Management dashboard tracking structural growth metrics:
 `
 cop-past/
 ├── src/                    # Source code
-├── docs/                   # Documentation
+│   ├── extension.ts        # Main entry point
+│   ├── designTokens.ts     # UI design tokens
+│   ├── interceptors/       # AI code detection
+│   ├── mutations/          # Code mutation engine
+│   ├── socratic/           # Interactive Q&A
+│   ├── telemetry/          # Metrics tracking
+│   └── dashboard/          # Progress visualization
 ├── tests/                  # Test files
-├── README.md               # This file
-└── package.json            # VS Code extension manifest
+├── docs/                   # Documentation
+├── package.json            # VS Code extension manifest
+├── tsconfig.json           # TypeScript configuration
+└── LICENSE                 # MIT License
 `
 
 ## Getting Started
 
-_TBD during implementation_
+### Installation
+
+1. Open VS Code
+2. Open the cop-past folder
+3. Run 
+pm install to install dependencies
+4. Press **F5** to launch Extension Development Host
+
+### Usage
+
+1. Enable PedagogyGuard AI via Command Palette
+2. Write or paste code in VS Code
+3. When AI code is detected, choose to analyze and debug
+4. Complete Socratic dialogue sessions
+5. Track your progress in the dashboard
+
+## Development
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- VS Code (v1.85 or higher)
+- TypeScript (v5.3 or higher)
+
+### Commands
+
+`ash
+# Install dependencies
+npm install
+
+# Compile TypeScript
+npm run compile
+
+# Run tests
+npm test
+
+# Lint code
+npm run lint
+`
+
+### VS Code Extension Commands
+
+- PedagogyGuard: Enable - Enable the extension
+- PedagogyGuard: Disable - Disable the extension
+- PedagogyGuard: Show Progress Dashboard - Show the dashboard
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) - System design and components
+- [API](docs/API.md) - Complete API reference
+- [User Guide](docs/USER_GUIDE.md) - How to use the extension
+- [Pitch](docs/PITCH.md) - Hackathon pitch document
+
+## Testing
+
+`ash
+# Run all tests
+npm test
+
+# Run specific test
+npm test -- --grep "MutationEngine"
+`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
 
 ## License
 
-TBD
+MIT License - see [LICENSE](LICENSE) for details
+
+## Acknowledgments
+
+- VS Code Extension API
+- TypeScript Community
+- Open Source Contributors
+
+## Contact
+
+- Email: team@pedagogyguard.ai
+- GitHub: github.com/pedagogyguard-ai
+- Website: pedagogyguard.ai
