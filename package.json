@@ -1,0 +1,106 @@
+﻿{
+  "name": "pedagogyguard-ai",
+  "displayName": "PedagogyGuard AI",
+  "description": "The Smart-Guard Infrastructure for Entry-Level Engineers - Transforms AI coding assistants into active learning engines",
+  "version": "0.0.1",
+  "publisher": "pedagogyguard",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Education",
+    "Linters",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:java",
+    "onLanguage:csharp",
+    "onLanguage:cpp",
+    "onLanguage:go",
+    "onLanguage:rust",
+    "onCommand:pedagogyguard.enable",
+    "onCommand:pedagogyguard.disable"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pedagogyguard.enable",
+        "title": "PedagogyGuard: Enable"
+      },
+      {
+        "command": "pedagogyguard.disable",
+        "title": "PedagogyGuard: Disable"
+      },
+      {
+        "command": "pedagogyguard.showDashboard",
+        "title": "PedagogyGuard: Show Progress Dashboard"
+      }
+    ],
+    "configuration": {
+      "title": "PedagogyGuard AI",
+      "properties": {
+        "pedagogyguard.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable PedagogyGuard AI"
+        },
+        "pedagogyguard.mutationIntensity": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "default": "medium",
+          "description": "Intensity level of code mutations"
+        },
+        "pedagogyguard.socraticMode": {
+          "type": "string",
+          "enum": [
+            "interactive",
+            "passive",
+            "disabled"
+          ],
+          "default": "interactive",
+          "description": "Socratic dialogue mode"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pedagogyguard-sidebar",
+          "title": "PedagogyGuard AI",
+          "icon": "$(shield)"
+        }
+      ]
+    },
+    "views": {
+      "pedagogyguard-sidebar": [
+        {
+          "id": "pedagogyguardDashboard",
+          "name": "Progress Dashboard"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
