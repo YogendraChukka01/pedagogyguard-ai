@@ -1,14 +1,51 @@
-﻿# 🛡️ PedagogyGuard AI
+﻿<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-5.3%2B-blue.svg?style=flat"/>
+  <img src="https://img.shields.io/badge/VS_Code-1.95%2B-blue.svg?style=flat"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat"/>
+  <img src="https://img.shields.io/badge/Hackathon-AI%20Education-green.svg?style=flat"/>
+</p>
+
+# 🛡️ PedagogyGuard AI
 
 ### The Smart-Guard Infrastructure for Entry-Level Engineers
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![VS Code](https://img.shields.io/badge/VS%20Code-1.85%2B-blue.svg)](https://code.visualstudio.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3%2B-blue.svg)](https://www.typescriptlang.org/)
-[![Hackathon](https://img.shields.io/badge/Hackathon-AI%20Education-green.svg)](#)
-
 > **Transform AI coding assistants from cognitive crutches into active learning engines.**
 > PedagogyGuard AI intercepts AI-generated code, injects pedagogical guardrails, and forces junior developers to actively analyze, debug, and validate code before deployment.
+
+## Project Snapshot
+
+```
+┌──────────────────────────────────────────────────────┐
+│ 🛡️ PedagogyGuard AI                                   │
+│                                                      │
+│ VS Code extension for AI-powered learning            │
+│                                                      │
+│ UI        Backend      Tech                         │
+│ Webview   TypeScript   VS Code API                  │
+│           ESLint                                  │
+│                                                      │
+│ Status: Hackathon  License: MIT                     │
+└──────────────────────────────────────────────────────┘
+```
+
+## How It Works
+
+```
+INPUT
+  ↓           Developer copies AI-generated code
+  ↓
+DETECT        InterceptorManager monitors:
+  ↓           - Document changes (heuristic: >20 char insertions)
+  ↓           - Clipboard (500ms polling)
+  ↓           - Paste events (intercepted via command override)
+MUTATE        MutationEngine injects 6 types of bugs:
+  ↓           Timeout · Memory Leak · SQL Injection · Race · Null Ref · Inf. Loop
+CHALLENGE     SocraticDialogue shows mutation + asks Qs
+  ↓            (18+ questions, 3 difficulty levels)
+TRACK         TelemetryService logs metrics to dashboard
+  ↓
+OUTPUT        Progress dashboard in VS Code sidebar
+```
 
 ---
 
@@ -46,7 +83,7 @@ The widespread integration of AI coding assistants (GitHub Copilot, Claude Code,
 
 PedagogyGuard AI acts as an **automated, interactive gatekeeper** that transforms AI from a crutch into a learning engine.
 
-`
+```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    How It Works                                  │
 ├─────────────────────────────────────────────────────────────────┤
@@ -74,7 +111,7 @@ PedagogyGuard AI acts as an **automated, interactive gatekeeper** that transform
 │   └──────────────┘                                               │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
-`
+```
 
 ### ✨ What Makes Us Different
 
@@ -129,7 +166,7 @@ Introduces **6 types** of pedagogical bugs to create learning opportunities:
 
 ## 🏗️ Architecture
 
-`
+```
 pedagogyguard-ai/
 ├── src/
 │   ├── extension.ts              # Main entry point
@@ -149,7 +186,7 @@ pedagogyguard-ai/
 │   └── integration-tests/        # Integration tests
 ├── docs/                         # Comprehensive documentation
 └── package.json                  # VS Code extension manifest
-`
+```
 
 ### Design Patterns Used
 
@@ -176,6 +213,25 @@ pedagogyguard-ai/
 
 ---
 
+## 🧠 Engineering Decisions
+
+### Why VS Code Webview API for the dashboard?
+The WebviewViewProvider gives a rich HTML/JS canvas inside the VS Code sidebar — enough for scorecards and progress charts without spinning up a separate browser tab.
+
+### Why heuristic-based AI detection?
+Rather than calling an external LLM to classify each paste (slow, costs tokens, breaches privacy), PedagogyGuard uses lightweight heuristics: large insertions without clipboard match, code-specific patterns (function/class/import), and line-count density. This keeps 100% processing local while catching the vast majority of AI-pasted code.
+
+### Why 6 specific mutation types?
+Each mutation targets a different class of bug that junior developers most commonly miss:
+- **Timeout** → performance awareness
+- **Memory leak** → lifecycle management
+- **SQL injection** → security hygiene
+- **Race condition** → async correctness
+- **Null reference** → defensive programming
+- **Infinite loop** → loop control fundamentals
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -187,20 +243,20 @@ pedagogyguard-ai/
 ### Installation
 
 1. **Clone the repository**
-   `ash
+   ```bash
    git clone https://github.com/YogendraChukka01/pedagogyguard-ai.git
    cd pedagogyguard-ai
-   `
+   ```
 
 2. **Install dependencies**
-   `ash
+   ```bash
    npm install
-   `
+   ```
 
 3. **Compile TypeScript**
-   `ash
+   ```bash
    npm run compile
-   `
+   ```
 
 4. **Launch in VS Code**
    - Open the project in VS Code
@@ -232,22 +288,22 @@ pedagogyguard-ai/
 
 | Setting | Type | Default | Description |
 |---------|------|---------|-------------|
-| pedagogyguard.enabled | boolean | 	rue | Enable/disable the extension |
+| pedagogyguard.enabled | boolean | true | Enable/disable the extension |
 | pedagogyguard.mutationIntensity | enum | "medium" | Mutation intensity (low/medium/high) |
 | pedagogyguard.socraticMode | enum | "interactive" | Dialogue mode (interactive/passive/disabled) |
 
 ### Example Workflow
 
-`javascript
+```javascript
 // 1. AI generates this code (GitHub Copilot, Cursor, etc.)
 const fetchData = async (userId) => {
-  const response = await fetch(/api/users/);
+  const response = await fetch('/api/users/');
   return response.json();
 };
 
 // 2. PedagogyGuard detects and mutates it
 const fetchData = async (userId) => {
-  const response = await fetch(/api/users/);
+  const response = await fetch('/api/users/');
   return response.json();
   // ⚠️ No error handling for failed requests!
 };
@@ -258,7 +314,7 @@ const fetchData = async (userId) => {
 // 4. You fix the code
 const fetchData = async (userId) => {
   try {
-    const response = await fetch(/api/users/);
+    const response = await fetch('/api/users/');
     if (!response.ok) throw new Error(HTTP );
     return await response.json();
   } catch (error) {
@@ -266,7 +322,7 @@ const fetchData = async (userId) => {
     throw error;
   }
 };
-`
+```
 
 ---
 
@@ -339,10 +395,16 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ---
 
-<div align="center">
+<h3 align="center">
 
-**Built with ❤️ for the future of developer education**
+```
+Built by Yogi
 
-[⬆ Back to Top](#-pedagogyguard-ai)
+  Build.  Learn.  Ship.  Iterate.
+```
 
-</div>
+</h3>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/—%20AI%20×%20Software%20×%20Product%20×%20Open%20Source-0d1117?style=for-the-badge&labelColor=0d1117&color=7c3aed"/>
+</p>
